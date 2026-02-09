@@ -1,800 +1,405 @@
-<!doctype html>
+ <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>MindShock Media | Booking + Recording</title>
-  <meta name="description" content="MindShock Media connects bands and comics to booking opportunities and indie-style recording—built from real rooms, real sets, and real momentum." />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 
-  <style>
-    :root{
-      --bg0:#05060a;
-      --bg1:#090b12;
-      --ink:#eef1ff;
-      --muted:rgba(238,241,255,.72);
-      --muted2:rgba(238,241,255,.55);
+<title>MindShock Media | Booking & Representation</title>
 
-      /* HARDCORE / PRO */
-      --steel: rgba(255,255,255,.10);
-      --stroke: rgba(255,255,255,.14);
-      --shadow: 0 28px 80px rgba(0,0,0,.70);
+<meta name="description"
+content="MindShock Media represents emerging comedians and bands through booking, development, and indie recording support." />
 
-      /* tiny accent only (very slight) */
-      --accent: rgba(0,245,255,.28);
-      --accent2: rgba(255,43,214,.10);
+<style>
 
-      --radius: 22px;
-      --radius2: 16px;
-    }
+:root{
+  --bg0:#05060a;
+  --bg1:#090b12;
+  --ink:#eef1ff;
+  --muted:rgba(238,241,255,.72);
+  --muted2:rgba(238,241,255,.55);
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
+  --stroke: rgba(255,255,255,.14);
+  --shadow: 0 28px 80px rgba(0,0,0,.70);
 
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--ink);
-      background:
-        radial-gradient(900px 700px at 20% 10%, rgba(0,245,255,.10), transparent 60%),
-        radial-gradient(900px 700px at 80% 20%, rgba(255,43,214,.06), transparent 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
-    }
+  --accent: rgba(0,245,255,.28);
 
-    /* subtle grit */
-    .grain{
-      position:fixed; inset:-40px;
-      background-image:
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,.03), transparent 45%),
-        radial-gradient(circle at 80% 20%, rgba(255,255,255,.02), transparent 50%),
-        radial-gradient(circle at 50% 90%, rgba(255,255,255,.02), transparent 55%);
-      opacity:.55;
-      pointer-events:none;
-      z-index:-1;
-      filter: blur(14px) contrast(110%);
-    }
+  --radius: 22px;
+}
 
-    .wrap{
-      max-width: 1180px;
-      margin:0 auto;
-      padding: 22px 18px 68px;
-    }
+*{box-sizing:border-box}
 
-    /* HEADER */
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding: 14px 16px;
-      border-radius: 999px;
-      border:1px solid var(--stroke);
-      background: rgba(255,255,255,.05);
-      box-shadow: 0 16px 60px rgba(0,0,0,.35);
-      backdrop-filter: blur(10px);
-    }
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  color:var(--ink);
 
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      text-decoration:none;
-      color:var(--ink);
-      font-weight: 900;
-      letter-spacing: .06em;
-      text-transform: uppercase;
-      white-space:nowrap;
-    }
+  background:
+    radial-gradient(900px 700px at 20% 10%, rgba(0,245,255,.10), transparent 60%),
+    radial-gradient(900px 700px at 80% 20%, rgba(255,43,214,.06), transparent 60%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
+}
 
-    .brandMark{
-      width:34px; height:34px;
-      border-radius: 10px;
-      border:1px solid rgba(255,255,255,.18);
-      background:
-        linear-gradient(135deg, rgba(0,245,255,.18), rgba(255,43,214,.08)),
-        rgba(0,0,0,.35);
-      box-shadow: 0 0 0 4px rgba(0,245,255,.06);
-      display:grid;
-      place-items:center;
-      font-size: 14px;
-    }
+.wrap{
+  max-width:1180px;
+  margin:auto;
+  padding:22px 18px 70px;
+}
 
-    .brandSmall{
-      display:block;
-      font-size: 11px;
-      color: var(--muted2);
-      letter-spacing:.12em;
-      margin-top:2px;
-      font-weight: 800;
-    }
+/* Header */
 
-    .nav{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.06);
-      color: var(--ink);
-      text-decoration:none;
-      font-weight: 800;
-      letter-spacing:.02em;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-    }
-    .btn:hover{transform: translateY(-2px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.26)}
-    .btn.primary{
-      border-color: rgba(0,245,255,.40);
-      background: linear-gradient(90deg, rgba(0,245,255,.14), rgba(255,43,214,.06));
-      box-shadow: 0 20px 70px rgba(0,245,255,.08);
-    }
+  padding:14px 18px;
+  border-radius:999px;
+  border:1px solid var(--stroke);
+  background:rgba(255,255,255,.05);
+  box-shadow:var(--shadow);
+}
 
-    /* HERO */
-    .hero{
-      margin-top: 18px;
-      display:grid;
-      grid-template-columns: 1.08fr .92fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-    @media(max-width: 980px){
-      .hero{grid-template-columns:1fr}
-      .nav{justify-content:flex-start}
-    }
+.brand{
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
 
-    .card{
-      position:relative;
-      border-radius: var(--radius);
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.05);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-    }
-    .cardInner{position:relative; padding: 22px;}
+.nav{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
 
-    .stamp{
-      position:absolute;
-      right:16px; top:16px;
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing:.14em;
-      text-transform: uppercase;
-      color: rgba(238,241,255,.62);
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(0,0,0,.28);
-      padding: 8px 10px;
-      border-radius: 999px;
-      backdrop-filter: blur(10px);
-    }
-    .stamp b{color:#fff}
+.btn{
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid var(--stroke);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  text-decoration:none;
+  font-weight:800;
+}
 
-    .kicker{
-      font-size: 12px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--muted2);
-      font-weight: 900;
-      margin:0;
-    }
+.btn.primary{
+  border-color:var(--accent);
+  background:linear-gradient(90deg,rgba(0,245,255,.18),rgba(255,43,214,.06));
+}
 
-    h1{
-      margin: 10px 0 0;
-      font-size: clamp(38px, 5.5vw, 64px);
-      line-height: 1.0;
-      letter-spacing: -0.03em;
-      font-weight: 1000;
-      text-transform: uppercase;
-    }
+/* Layout */
 
-    .sub{
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.55;
-      max-width: 70ch;
-    }
+.hero{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:18px;
+  margin-top:20px;
+}
 
-    .chips{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top: 16px;
-    }
-    .chip{
-      padding: 9px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(0,0,0,.24);
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing:.08em;
-      text-transform: uppercase;
-      color: rgba(238,241,255,.92);
-    }
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr}
+}
 
-    .ctaRow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top: 18px;
-    }
+.card{
+  border-radius:var(--radius);
+  border:1px solid var(--stroke);
+  background:rgba(255,255,255,.05);
+  box-shadow:var(--shadow);
+  padding:22px;
+}
 
-    .fine{
-      margin-top: 12px;
-      color: var(--muted2);
-      font-size: 12px;
-      line-height: 1.5;
-    }
+/* Text */
 
-    /* HERO IMAGE PANEL */
-    .heroMedia{
-      height:100%;
-      min-height: 420px;
-      padding: 14px;
-      display:flex;
-      flex-direction:column;
-      gap: 12px;
-    }
+.kicker{
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted2);
+  font-weight:900;
+}
 
-    .heroImg{
-      position:relative;
-      flex: 1;
-      border-radius: var(--radius2);
-      overflow:hidden;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.30);
-    }
-    .heroImg img{
-      width:100%; height:100%;
-      object-fit:cover;
-      display:block;
-      filter: contrast(1.05) saturate(1.05);
-      opacity:.97;
-    }
-    .heroImg::after{
-      content:"";
-      position:absolute; inset:0;
-      background: linear-gradient(90deg, rgba(0,0,0,.65), rgba(0,0,0,.12) 55%, rgba(0,0,0,.55));
-      pointer-events:none;
-    }
+h1{
+  margin:10px 0 0;
+  font-size:clamp(36px,5vw,60px);
+  letter-spacing:-.03em;
+  text-transform:uppercase;
+  font-weight:1000;
+}
 
-    .heroBadge{
-      position:absolute;
-      left: 12px; bottom: 12px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.16);
-      background: rgba(0,0,0,.42);
-      backdrop-filter: blur(10px);
-      font-weight: 900;
-      letter-spacing:.10em;
-      text-transform: uppercase;
-      font-size: 12px;
-      box-shadow: 0 16px 60px rgba(0,0,0,.35);
-    }
-    .heroBadge strong{color:#fff}
-    .heroBadge span{color: rgba(238,241,255,.70); font-weight:800}
+.sub{
+  margin-top:12px;
+  color:var(--muted);
+  max-width:70ch;
+  line-height:1.55;
+}
 
-    /* SECTION TITLES */
-    .sectionTitle{
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap:12px;
-      margin: 22px 0 10px;
-    }
-    .sectionTitle h2{
-      margin:0;
-      font-size: 18px;
-      letter-spacing:.12em;
-      text-transform: uppercase;
-      font-weight: 1000;
-    }
-    .sectionTitle .rightStamp{
-      font-size: 11px;
-      letter-spacing:.14em;
-      text-transform: uppercase;
-      color: rgba(238,241,255,.62);
-      border:1px solid rgba(255,255,255,.12);
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(0,0,0,.25);
-    }
+.chips{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:14px;
+}
 
-    /* JOHN & PETER'S FEATURE (bigger slice) */
-    .jpGrid{
-      display:grid;
-      grid-template-columns: .85fr 1.15fr;
-      gap: 14px;
-      align-items: stretch;
-    }
-    @media(max-width: 900px){
-      .jpGrid{grid-template-columns:1fr}
-    }
+.chip{
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid var(--stroke);
+  background:rgba(0,0,0,.25);
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
 
-    .jpPhoto{
-      border-radius: var(--radius2);
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.30);
-      min-height: 260px;
-    }
-    .jpPhoto img{width:100%; height:100%; object-fit:cover; display:block}
+/* Section */
 
-    .jpCopy{
-      border-radius: var(--radius2);
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.22);
-      padding: 16px;
-    }
-    .jpCopy h3{
-      margin:0 0 6px;
-      font-size: 20px;
-      font-weight: 1000;
-      letter-spacing:-.02em;
-    }
-    .jpCopy p{
-      margin:0;
-      color: var(--muted);
-      line-height:1.55;
-      font-size: 14px;
-    }
-    .ticks{
-      margin-top: 12px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    @media(max-width:700px){
-      .ticks{grid-template-columns:1fr}
-    }
-    .tick{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.04);
-      padding: 12px;
-      border-radius: 14px;
-      color: rgba(238,241,255,.90);
-      font-weight: 800;
-      font-size: 13px;
-    }
-    .tick span{color: rgba(238,241,255,.70); font-weight:700}
+.sectionTitle{
+  display:flex;
+  justify-content:space-between;
+  margin:26px 0 10px;
+}
 
-    /* COMEDY CARDS */
-    .grid3{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-    }
-    @media(max-width: 980px){
-      .grid3{grid-template-columns:1fr}
-    }
+.sectionTitle h2{
+  margin:0;
+  font-size:18px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-weight:1000;
+}
 
-    .tile{
-      border-radius: var(--radius);
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
-      overflow:hidden;
-      box-shadow: 0 18px 60px rgba(0,0,0,.35);
-    }
-    .tileMedia{
-      height: 220px;
-      overflow:hidden;
-      border-bottom:1px solid rgba(255,255,255,.10);
-      position:relative;
-      background: rgba(0,0,0,.35);
-    }
-    .tileMedia img{
-      width:100%; height:100%;
-      object-fit:cover;
-      display:block;
-      filter: contrast(1.05) saturate(1.05);
-    }
-    .tileLogo{
-      position:absolute;
-      top:10px; left:10px;
-      font-size: 11px;
-      font-weight: 1000;
-      letter-spacing:.14em;
-      text-transform: uppercase;
-      padding: 7px 9px;
-      border-radius: 999px;
-      background: rgba(0,0,0,.42);
-      border:1px solid rgba(255,255,255,.14);
-      color: rgba(238,241,255,.92);
-      backdrop-filter: blur(10px);
-    }
+.rightStamp{
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted2);
+  border:1px solid var(--stroke);
+  padding:6px 10px;
+  border-radius:999px;
+  background:rgba(0,0,0,.25);
+}
 
-    .tileBody{padding: 14px}
-    .tileBody h4{
-      margin:0 0 8px;
-      font-size: 14px;
-      letter-spacing:.06em;
-      text-transform: uppercase;
-      font-weight: 1000;
-    }
-    .tileBody p{
-      margin:0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.55;
-    }
+/* Roster */
 
-    /* STUDIO + ROSTER */
-    .twoCol{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 14px;
-      align-items: stretch;
-    }
-    @media(max-width: 980px){
-      .twoCol{grid-template-columns:1fr}
-    }
+.grid2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
 
-    .studioHero{
-      border-radius: var(--radius);
-      border:1px solid rgba(255,255,255,.14);
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03)),
-        rgba(0,0,0,.35);
-      overflow:hidden;
-      box-shadow: 0 18px 60px rgba(0,0,0,.35);
-    }
-    .studioHero .inner{padding: 18px}
-    .studioHero h3{
-      margin:0 0 8px;
-      font-size: 18px;
-      letter-spacing:.12em;
-      text-transform: uppercase;
-      font-weight: 1000;
-    }
-    .studioHero p{
-      margin:0;
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.55;
-    }
-    .bullets{
-      margin-top: 12px;
-      display:grid;
-      gap:10px;
-    }
-    .bullet{
-      padding: 12px;
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.22);
-      font-weight: 800;
-      color: rgba(238,241,255,.92);
-      font-size: 13px;
-    }
-    .bullet span{color: rgba(238,241,255,.70); font-weight:700}
+@media(max-width:900px){
+  .grid2{grid-template-columns:1fr}
+}
 
-    .roster{
-      border-radius: var(--radius);
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(0,0,0,.22);
-      padding: 18px;
-      box-shadow: 0 18px 60px rgba(0,0,0,.35);
-    }
-    .roster h3{
-      margin:0 0 10px;
-      font-size: 18px;
-      letter-spacing:.12em;
-      text-transform: uppercase;
-      font-weight: 1000;
-    }
-    .roster ul{
-      margin:0;
-      padding:0 0 0 18px;
-      display:grid;
-      gap:8px;
-      color: rgba(238,241,255,.90);
-      font-weight: 850;
-      letter-spacing:.02em;
-    }
-    .roster li{color: rgba(238,241,255,.88)}
-    .roster small{display:block; margin-top: 10px; color: var(--muted2); line-height:1.5}
+.artist{
+  border-radius:var(--radius);
+  border:1px solid var(--stroke);
+  background:rgba(255,255,255,.05);
+  padding:18px;
+}
 
-    /* CONTACT */
-    .contact{
-      margin-top: 22px;
-      border-radius: var(--radius);
-      border:1px solid rgba(0,245,255,.22);
-      background: linear-gradient(90deg, rgba(0,245,255,.08), rgba(255,43,214,.03));
-      padding: 18px;
-      box-shadow: 0 18px 60px rgba(0,0,0,.35);
-    }
-    .contact h3{
-      margin:0 0 8px;
-      font-size: 18px;
-      letter-spacing:.12em;
-      text-transform: uppercase;
-      font-weight: 1000;
-    }
-    .contact p{
-      margin:0;
-      color: rgba(238,241,255,.86);
-      line-height:1.55;
-      font-size: 14px;
-    }
-    .contactRow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top: 12px;
-    }
+.artist h3{
+  margin:0 0 6px;
+  font-size:18px;
+  font-weight:1000;
+  letter-spacing:.02em;
+}
 
-    .footer{
-      margin-top: 18px;
-      text-align:center;
-      color: var(--muted2);
-      font-size: 12px;
-    }
+.artist .type{
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted2);
+  font-weight:900;
+}
 
-    /* anchor offsets */
-    [id]{scroll-margin-top: 90px;}
-  </style>
+.artist p{
+  margin:10px 0 0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.55;
+}
+
+/* Contact */
+
+.contact{
+  margin-top:24px;
+  border-radius:var(--radius);
+  border:1px solid var(--accent);
+  background:linear-gradient(90deg,rgba(0,245,255,.08),rgba(255,43,214,.03));
+  padding:18px;
+  box-shadow:var(--shadow);
+}
+
+.footer{
+  margin-top:20px;
+  text-align:center;
+  color:var(--muted2);
+  font-size:12px;
+}
+
+</style>
 </head>
 
 <body>
-  <div class="grain"></div>
 
-  <div class="wrap">
+<div class="wrap">
 
-    <header class="topbar">
-      <a class="brand" href="#top">
-        <div class="brandMark">MS</div>
-        <div>
-          <div>MINDSHOCK MEDIA</div>
-          <span class="brandSmall">BOOKING • RECORDING • REPRESENTATION</span>
-        </div>
-      </a>
+<header class="topbar">
 
-      <nav class="nav">
-        <a class="btn" href="#about">About</a>
-        <a class="btn" href="#shows">Live</a>
-        <a class="btn" href="#studio">Studio</a>
-        <a class="btn" href="#artists">Artists</a>
-        <a class="btn primary" href="#contact">Contact</a>
-      </nav>
-    </header>
+<div class="brand">MINDSHOCK MEDIA</div>
 
-    <!-- HERO -->
-    <section class="hero" id="top">
-      <div class="card">
-        <div class="stamp"><b>MINDSHOCK</b> MEDIA</div>
-        <div class="cardInner">
-          <p class="kicker">MindShock Media • Connecting talent with opportunity</p>
-          <h1>Where Music Meets Comedy</h1>
+<nav class="nav">
+<a class="btn" href="#about">About</a>
+<a class="btn" href="#artists">Roster</a>
+<a class="btn" href="#contact">Contact</a>
+</nav>
 
-          <p class="sub">
-            <b>MindShock Media</b> books bands and stand-up comics into real rooms and helps performers move from
-            “good set” to “real momentum.” We also support indie-style recording workflows to get you listenable,
-            presentable, and ready for the next step.
-          </p>
+</header>
 
-          <div class="chips">
-            <span class="chip">BOOKING</span>
-            <span class="chip">RECORDING</span>
-            <span class="chip">REPRESENTATION</span>
-            <span class="chip">INDIE / DIY</span>
-          </div>
+<!-- Hero -->
 
-          <div class="ctaRow">
-            <a class="btn primary" href="#contact">Get Representation Info</a>
-            <a class="btn" href="#shows">See Live Proof</a>
-          </div>
+<section class="hero">
 
-          <div class="fine">
-            If you’re interested in signing, booking, recording, or any form of representation:
-            <b>MindShock Media</b> — contact us below.
-          </div>
-        </div>
-      </div>
+<div class="card">
 
-      <div class="card">
-        <div class="cardInner heroMedia">
-          <div class="heroImg">
-            <!-- Mike (open mic host) -->
-            <img src="mike%20d.jpg" alt="John & Peter’s Open Mic - MindShock Media" />
-            <div class="heroBadge">
-              <strong>MINDSHOCK MEDIA</strong> <span>• LIVE ROOM ACCESS • NEW HOPE</span>
-            </div>
-          </div>
-          <div class="fine" style="margin:0;">
-            <b>MINDSHOCK Media</b> scouts live rooms. If you can deliver under real pressure, we notice.
-          </div>
-        </div>
-      </div>
-    </section>
+<p class="kicker">Talent Development & Booking</p>
 
-    <!-- ABOUT -->
-    <div class="sectionTitle" id="about">
-      <h2>MindShock Media</h2>
-      <div class="rightStamp">Not hype — proof.</div>
-    </div>
+<h1>Where Comedy & Music Get Built</h1>
 
-    <div class="card">
-      <div class="cardInner">
-        <p class="sub" style="margin:0;">
-          <b>MindShock Media</b> exists to connect performers with outcomes: booked slots, real introductions,
-          and recordings that don’t sound like a phone mic in a bathroom. We’re building a curated pipeline:
-          live performance → consistency → booking/recording support → next-level opportunity.
-        </p>
-        <div class="chips" style="margin-top:14px;">
-          <span class="chip">MINDSHOCK MEDIA</span>
-          <span class="chip">SCOUTING</span>
-          <span class="chip">CURATION</span>
-          <span class="chip">DEVELOPMENT</span>
-        </div>
-      </div>
-    </div>
+<p class="sub">
+MindShock Media develops emerging performers through
+live booking, creative support, and practical career guidance.
+We focus on consistency, professionalism, and real momentum.
+</p>
 
-    <!-- LIVE AT JOHN & PETER'S -->
-    <div class="sectionTitle" id="shows" style="margin-top:24px;">
-      <h2>Live at John &amp; Peter’s</h2>
-      <div class="rightStamp">MINDSHOCK MEDIA • PERFORMANCE ROLL</div>
-    </div>
+<div class="chips">
+<span class="chip">BOOKING</span>
+<span class="chip">DEVELOPMENT</span>
+<span class="chip">REPRESENTATION</span>
+<span class="chip">INDIE SUPPORT</span>
+</div>
 
-    <div class="card">
-      <div class="cardInner">
-        <div class="jpGrid">
-          <div class="jpPhoto">
-            <img src="mike%20d.jpg" alt="Mike - John & Peter’s open mic host" />
-          </div>
+</div>
 
-          <div class="jpCopy">
-            <h3>Proving Ground</h3>
-            <p>
-              Mike runs the open mic at John &amp; Peter’s in New Hope, PA — a real room with real audiences.
-              This is one of our on-the-ground filters: if you can get laughs (or land a set) here consistently,
-              <b>MindShock Media</b> pays attention.
-            </p>
+<div class="card">
 
-            <div class="ticks">
-              <div class="tick">✅ <span>Emerging bands building real momentum</span></div>
-              <div class="tick">✅ <span>Stand-up comics who can hold a room</span></div>
-              <div class="tick">✅ <span>Stage presence + consistency</span></div>
-              <div class="tick">✅ <span>We watch the work, not the hype</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<h3>Our Approach</h3>
 
-    <!-- COMEDIANS -->
-    <div class="sectionTitle" style="margin-top:20px;">
-      <h2>Comedians bringing the heat</h2>
-      <div class="rightStamp">MINDSHOCK MEDIA • LIVE PROOF</div>
-    </div>
+<p class="sub" style="margin:8px 0 0;">
+We work with performers who treat their craft seriously.
+No hype. No shortcuts. Just steady growth and real opportunities.
+</p>
 
-    <div class="grid3">
-      <div class="tile">
-        <div class="tileMedia">
-          <div class="tileLogo">MINDSHOCK MEDIA</div>
-          <img src="black%20dude.PNG" alt="Live stand-up performance - John & Peter’s" />
-        </div>
-        <div class="tileBody">
-          <h4>Live Performance — John &amp; Peter’s</h4>
-          <p>
-            A steady, composed delivery with sharp timing and control. This is the kind of room command
-            <b>MindShock Media</b> looks for: presence without forcing it.
-          </p>
-        </div>
-      </div>
+</div>
 
-      <div class="tile">
-        <div class="tileMedia">
-          <div class="tileLogo">MINDSHOCK MEDIA</div>
-          <img src="joe%20flynn.jpg" alt="Joe Flynn stand-up comedy - John & Peter’s" />
-        </div>
-        <div class="tileBody">
-          <h4>Joe Flynn — Stand-Up Comedy</h4>
-          <p>
-            Young, disciplined, and already in control of his act. Strong stage awareness, real instincts,
-            and the confidence to manage a room. That’s upside — and <b>MindShock Media</b> tracks it.
-          </p>
-        </div>
-      </div>
+</section>
 
-      <div class="tile">
-        <div class="tileMedia">
-          <div class="tileLogo">MINDSHOCK MEDIA</div>
-          <img src="com.jpg" alt="Live stand-up performance - John & Peter’s" />
-        </div>
-        <div class="tileBody">
-          <h4>Live Performance — John &amp; Peter’s</h4>
-          <p>
-            Dry delivery, sharp wit, and reads the room clean. Consistency + calm control is a repeatable skill —
-            and <b>MindShock Media</b> is built around repeatable skill.
-          </p>
-        </div>
-      </div>
-    </div>
+<!-- About -->
 
-    <!-- STUDIO + ARTISTS -->
-    <div class="sectionTitle" id="studio" style="margin-top:22px;">
-      <h2>Studio sessions</h2>
-      <div class="rightStamp">MINDSHOCK MEDIA • INDIE RECORDING VIBE</div>
-    </div>
+<div class="sectionTitle" id="about">
+<h2>About MindShock</h2>
+<div class="rightStamp">Independent Management</div>
+</div>
 
-    <div class="twoCol">
-      <div class="studioHero">
-        <div class="inner">
-          <h3>Indie-Style Recording</h3>
-          <p>
-            We support practical recording paths — the kind that get you clean vocals, tight takes, usable mixes,
-            and something you can confidently send to venues, collaborators, and industry contacts.
-            <b>MindShock Media</b> focuses on “presentable and real,” not overproduced fantasy.
-          </p>
+<div class="card">
 
-          <div class="bullets">
-            <div class="bullet">🎛️ <span>Basic tracking + arrangement cleanup</span></div>
-            <div class="bullet">🎚️ <span>Mix that translates on phones + cars</span></div>
-            <div class="bullet">🎧 <span>Indie aesthetic, not sterile perfection</span></div>
-            <div class="bullet">📦 <span>Deliverables ready for booking + pitching</span></div>
-          </div>
+<p class="sub" style="margin:0;">
+MindShock Media operates as a small, focused talent agency and
+development platform. We prioritize long-term careers over
+viral moments, and sustainable growth over empty exposure.
+</p>
 
-          <div class="fine">
-            Don’t remember the studio name yet? Fine. This section is about what <b>MindShock Media</b> delivers.
-          </div>
-        </div>
-      </div>
+</div>
 
-      <div class="roster" id="artists">
-        <h3>Artists on our radar</h3>
-        <ul>
-          <li>OTD Nightmare</li>
-          <li>Rebel Wolves</li>
-          <li>Elysium Drive</li>
-          <li>Whiskey Riot</li>
-          <li>Static Avenue</li>
-          <li>Neon Funeral</li>
-        </ul>
-        <small>
-          Temporary roster for launch. We’ll replace placeholders as real artists lock in.
-          The point is clear: <b>MindShock Media</b> curates — we don’t spam.
-        </small>
-      </div>
-    </div>
+<!-- Roster -->
 
-    <!-- CONTACT -->
-    <div class="sectionTitle" id="contact" style="margin-top:22px;">
-      <h2>Contact MindShock Media</h2>
-      <div class="rightStamp">Representation • Signing • Info</div>
-    </div>
+<div class="sectionTitle" id="artists">
+<h2>Development Roster</h2>
+<div class="rightStamp">Emerging Talent</div>
+</div>
 
-    <div class="contact">
-      <h3>MindShock Media — Representation &amp; Booking</h3>
-      <p>
-        If you’re interested in signing, getting more information, or discussing any type of representation,
-        reach out to <b>MindShock Media</b>. We’ll respond with next steps and what we need from you.
-      </p>
+<div class="grid2">
 
-      <div class="contactRow">
-        <a class="btn primary" href="tel:2675829927">Call: 267-582-9927</a>
-        <a class="btn" href="mailto:Dave_rovine@yahoo.com">Email: Dave_rovine@yahoo.com</a>
-      </div>
+<!-- Comedian -->
 
-      <div class="fine">
-        Include: links to clips, EPK (if you have it), your city, and what you’re looking for (booking / recording / representation).
-      </div>
-    </div>
+<div class="artist">
+<div class="type">Stand-Up Comedy</div>
+<h3>Johnny Shaw (Hollywood, CA)</h3>
+<p>
+A high-energy storyteller with a sharp observational edge.
+Johnny blends West Coast pacing with classic club discipline,
+building sets that work in both intimate rooms and larger showcases.
+</p>
+</div>
 
-    <div class="footer">
-      © <span id="year"></span> <b>MindShock Media</b> • Booking • Recording • Representation
-    </div>
+<div class="artist">
+<div class="type">Stand-Up Comedy</div>
+<h3>Scott “Scotty” Sherman (Levittown, PA)</h3>
+<p>
+Dry, deliberate, and emotionally grounded.
+Scotty’s performances balance discomfort and honesty,
+creating memorable sets that reward patient audiences.
+</p>
+</div>
 
-  </div>
+<!-- Bands -->
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+<div class="artist">
+<div class="type">Alternative Rock Band</div>
+<h3>OCD Nightmares (Fishtown / Northeast Philadelphia)</h3>
+<p>
+A high-intensity alternative act blending punk energy
+with melodic hooks. Known for raw live performances
+and emotionally driven songwriting.
+</p>
+</div>
+
+<div class="artist">
+<div class="type">Indie Rock Band</div>
+<h3>The Polite Young Fellows (Oxford, Mississippi)</h3>
+<p>
+A Southern indie-rock group with vintage influences,
+layered harmonies, and thoughtful songwriting.
+Strong regional following and expanding touring footprint.
+</p>
+</div>
+
+</div>
+
+<!-- Contact -->
+
+<div class="sectionTitle" id="contact">
+<h2>Contact</h2>
+<div class="rightStamp">Representation & Booking</div>
+</div>
+
+<div class="contact">
+
+<h3>MindShock Media</h3>
+
+<p class="sub" style="margin:0;">
+For booking inquiries, representation discussions,
+or general information, contact us directly.
+Include links to performance clips and your location.
+</p>
+
+<div class="chips" style="margin-top:12px;">
+<span class="chip">Email: Dave_rovine@yahoo.com</span>
+<span class="chip">Phone: 267-582-9927</span>
+</div>
+
+</div>
+
+<div class="footer">
+© <span id="year"></span> MindShock Media
+</div>
+
+</div>
+
+<script>
+document.getElementById("year").textContent =
+new Date().getFullYear();
+</script>
+
 </body>
 </html>
